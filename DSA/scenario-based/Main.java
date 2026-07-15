@@ -1,24 +1,30 @@
-package LinkedListExample;
+package Stack;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Playlist playlist = new Playlist();
+        UndoBuffer buffer = new UndoBuffer(5);
 
-        playlist.addTrack(101);
-        playlist.addTrack(102);
-        playlist.addTrack(103);
-        playlist.addTrack(104);
+        buffer.push("Typed Hello");
+        buffer.push("Typed World");
+        buffer.push("Deleted World");
+        buffer.push("Typed Java");
+        buffer.push("Saved File");
 
-        System.out.println("Original Playlist:");
-        playlist.display();
+        buffer.push("Closed File");
 
-        Node current = playlist.findTrack(102);
+        System.out.println();
 
-        playlist.insertAfter(current, 999);
+        System.out.println("Latest Action : " + buffer.peek());
 
-        System.out.println("\nPlaylist After Insertion:");
-        playlist.display();
+        System.out.println();
+
+        System.out.println("Undo : " + buffer.pop());
+        System.out.println("Undo : " + buffer.pop());
+
+        System.out.println();
+
+        buffer.display();
     }
 }
